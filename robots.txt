@@ -1,0 +1,49 @@
+# ALLOW ALL USER AGENTS
+User-agent: *
+
+# ALLOWED PAGES
+Allow: /calculator-rc-rl-degrees-phase-shift.htm
+Allow: /calculator-coil-design.htm
+Allow: /calculator-decibel-amplitude.htm
+Allow: /calculator-decibel-power.htm
+Allow: /calculator-filter-lc.htm
+Allow: /calculator-filter-rc.htm
+Allow: /calculator-filter-rlc.htm
+Allow: /calculator-free-space-path-loss.htm
+Allow: /calculator-ideal-transformer.htm
+Allow: /calculator-lr-charge-time.htm
+Allow: /calculator-npn-common-emitter-base-divider.htm
+Allow: /calculator-npn-common-emitter.htm
+Allow: /calculator-rc-charge-time.htm
+Allow: /calculator-reactance-capacitive.htm
+Allow: /calculator-reactance-inductive.htm
+Allow: /calculator-resonance-lc.htm
+Allow: /calculator-rms-vp-dc.htm
+Allow: /calculator-rc-phase-shift-oscillator.htm
+Allow: /helpers-awg.htm
+Allow: /helpers-inductor-color-code.htm
+Allow: /helpers-ohms-law.htm
+Allow: /helpers-resistor-color-code.htm
+Allow: /helpers-make-iron-iii-chloride.htm
+Allow: /
+
+
+# DISALOWED PAGES -- BECAUSE OF WRONG SUBMIT WITHOUT .htm EXTENSION TO YANDEX.RU
+Disallow: /http://electro.wselectro.ws 
+Disallow: /calculator_resonance_lc
+Disallow: /calculator_filter_lc
+Disallow: /calculator_resonance_lc
+Disallow: /calculator_reactance_inductive
+Disallow: /calculator_reactance_capacitive
+Disallow: /calculator_decibel_amplitude
+Disallow: /calculator_decibel_power
+Disallow: /calculator_rms_vp_dc
+Disallow: /calculator_ideal_transformer
+Disallow: /calculator_npn_common_emitter
+Disallow: /calculator_npn_common_collector
+Disallow: /calculator_coil_design
+Disallow: /helpers_ohms_law
+Disallow: /calculator_npn_common_collector.htm
+
+# SITEMAP
+Sitemap: https://electro.ws/sitemap.xml

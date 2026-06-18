@@ -1,0 +1,51 @@
+#fast-links {
+    width: fit-content;
+    margin: 0px auto 0px auto;
+}
+
+#fast-links > p.title {
+    font-size: 30px;
+    font-weight: bold;
+    width: 200px;
+    height: fit-content;
+    background-color: black;
+    color: white;
+    text-align: center;
+    margin-bottom: 0px;
+    border: dashed 1px white;
+    cursor: pointer;
+}
+
+#fast-links > div {
+    border: solid 4px black;
+    margin-top: 0px;
+    visibility: hidden;
+    width: 200px;
+    height: 250px;
+    background-color: white;
+    position: absolute;
+    overflow: scroll;
+    z-index: 9999;
+}
+
+#fast-links > div > table > tbody > tr > td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+#fast-links > div > table > tbody > tr > td > p.group {
+    font-weight: bold;
+    font-size: large;
+    color: black;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#fast-links > div > table > tbody > tr > td > a.link {
+    color: black;
+    font-size: larger;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
+}

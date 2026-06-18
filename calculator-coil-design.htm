@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coil Design Calculator</title>
+    <meta name="description" content="Coil Design Calculator - Slove L (Inductance), for small coil designs with or without core, where precission is not a demand but near the requeired value">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** Coil Design Calculator">
+    <meta property="og:description" content="Coil Design Calculator - Slove L (Inductance), for small coil designs with or without core, where precission is not a demand but near the requeired value">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Coil Design Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for Coil Design:</h2>
+    <p class="brief-text">A coil is a wire, usually copper, wound, usually in a spiral, with or without a core.</p>
+    <p class="brief-text">This core can be air or a ferromagnetic material. When a core of ferromagnetic material is present, its inductance increases.</p>
+    <h2 class="brief-title">Brief for Coil Design Calculator:</h2>
+    <p class="brief-text">Compute a coil for a given inductance, works well on low inductance coils with an air core, require to know the Absolute Magnetic Permiability for other cores.</p>
+    <p class="brief-text">There is a reference table of Absolute Magnetic Permiability for various materials at the end of page.</p>
+    <p class="brief-text">Fill the three requeired values, the number of turns of wire, the diammeter of coil and the length.</p>
+    <p class="brief-text">*GEMENI NOTE:"There is no exact diameter beyond which the formula becomes invalid. The accuracy of the formula gradually decreases as the coil diameter increases or decreases, or as the coil shape departs from a perfect cylinder."</p>
+    <br>
+
+    <img class="formula-math" alt="coil formula" src="https://latex.codecogs.com/svg.image?L%3D%5Cfrac%7BN%5E%7B2%7DuA%7D%7Bl%7D">
+    <table class="formula-terms">
+        <tr><td>N</td><td>Number of turns</td></tr>
+        <tr><td>u</td><td>Absolute Magnetic permiability henry/m</td></tr>
+        <tr><td>l</td><td>Lenth of coil in mm</td></tr>
+        <tr><td>A</td><td>Coil Area in mm</td></tr>
+        <tr><td>L</td><td>Coil inductance in henry</td></tr>
+    </table>
+    <br>
+
+    <table class="formula-calculator">
+        <tr><td>N</td><td><input id="turns" type="number" min="0" value="28"><label for="turns">Number of turns</label></td></tr>
+        <tr><td>d</td><td><input id="diameter" type="number" min="0" value="120"><label for="diameter">Inner Coil diameter (mm)</label></td></tr>
+        <tr><td>l</td><td><input id="length" type="number" min="0" value="6"><label for="length">Coil length (mm)</label></td></tr>
+        <tr><td>u</td><td><input id="u" type="number" min="0" value="1.257e-6"><label for="u">Absolute Magnetic permiability (H/m)</label></td></tr>
+        <tr><td>A</td><td><input id="area" type="number" min="0" value="" disabled><label for="area">Coil area (mm)</label></td></tr>
+        <tr><td>L</td><td><input id="l" type="number" min="0" value="" disabled><label for="l">Coil inductance (H)</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    <br>
+
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+
+    <br><br><br>
+    
+    <p style="margin:auto;text-align: center; display: block;"><b>Absolute Magnetic permiability</b></p>
+    <table style="margin:0px auto 0px auto;">
+        <tr><td>Material</td><td>Min.</td><td>Max.</td><td>Med.</td></tr>
+        <tr><td style="text-align:right;">Air</td><td>---</td><td>---</td><td>1.257e-6</td></tr>
+        <tr><td style="text-align:right;">Iron (99.95% pure Fe annealed in H)</td><td>---</td><td>---</td><td>2.500e-1</td></tr>
+        <tr><td style="text-align:right;">Iron (99.8% pure)</td><td>---</td><td>---</td><td>6.300e-3</td></tr>
+        <tr><td style="text-align:right;">Ferrite (cobalt nickel zinc)</td><td>5.030e-5</td><td>1.570e-4</td><td>1.037e-4</td></tr>
+        <tr><td style="text-align:right;">Ferritic stainless steel (annealed)</td><td>1.260e-3</td><td>2.260e-3</td><td>1.760e-3</td></tr>
+        <tr><td style="text-align:right;">Ferrite (nickel zinc)</td><td>1.260e-5</td><td>2.890e-3</td><td>1.451e-3</td></tr>
+        <tr><td style="text-align:right;">Ferrite (manganese zinc)</td><td>4.400e-4</td><td>2.510e-2</td><td>1.277e-2</td></tr>
+        <tr><td style="text-align:right;">Ferrite (magnesium manganese zinc)</td><td>4.400e-4</td><td>6.280e-4</td><td>5.340e-4</td></tr>
+    </table>
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="Coil Design schematic" src="img/coil-design.webp">
+    <br>
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://www.electronics-tutorials.ws/tools/coil-inductance-calculator.html" target="_blank">Electronics-Tutorials</a>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/Permeability_(electromagnetism)" target="_blank">Permeability_(electromagnetism)</a>
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            $('#area').val(
+                Math.PI * Math.pow($('#diameter').valAsFloat()/2,2)
+            )
+            $('#l').val(
+                toExp( ( (Math.pow($('#turns').valAsFloat(),2) * $('#u').valAsFloat() * $('#area').valAsFloat()) / $('#length').valAsFloat())  / 10000)
+            )
+        });
+    </script>
+
+
+</body>
+</html>

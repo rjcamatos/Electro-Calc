@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Free Space Path Loss Calculator</title>
+    <meta name="description" content="FSPL (Free-space-path-loss) Calculator - Solve the Free Space Path Loss between to far points, can compute the received power for a given transmited power">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Free Space Path Loss Calculator">
+    <meta property="og:description" content="FSPL (Free-space-path-loss) Calculator - Solve the Free Space Path Loss between to far points, can compute the received power for a given transmited power">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Free Space Path Loss Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for FSPL:</h2>
+    <p class="brief-text">Free-space path loss (FSPL) is a measure of the attenuation of a radio signal between two distant antennas, free from obstacles.</p>
+    <p class="brief-text">It is measured in decibels (dB); the greater the distance, the greater the attenuation, and it is represented by a higher value.</p>
+    <p class="brief-text">It is measured in decibels of milliwatts (dBm), which is the value relative to 1mW, 1000 times smaller than dB.</p>
+    <p class="brief-text">For values ​​below 0dB, it is as if there were a power gain.</p>
+    <br>
+    <h2 class="brief-title">Brief for FSPL Calculator:</h2>
+    <p class="brief-text">Enter the transmitted power "Gain TX", the received power amplification (Gain RX), the desired frequency and distance to calculate the FSPL.</p>
+    <p class="brief-text">You can also set the receiver impedance to estimate the RMS Volt value to be received.</p>
+    <p class="brief-text">The calculated value is in dB and is truncated below 0 dB so that there is no gain error in relation to the transmitted power.</p>
+    <p class="brief-text">If you know the value of the attenuation of obstacles, subtract this value from the Transmitted Gain (Gain TX). There are tables on the internet with these values ​​for the most well-known frequencies, such as 2.4GHz (WIFI Radio Waves).</p>
+    <br>
+
+    <img class="formula-math" alt="FSPL - free space path loss formula" src="https://latex.codecogs.com/svg.image?FSPL_%7BdB%7D%3D20.Log_%7B10%7D(d)%26plus%3B20.Log_%7B10%7D(f)%26plus%3B20.Log_%7B10%7D%5Cbinom%7B4%5Cpi%7D%7Bc%7D">
+    <table class="formula-terms">
+        <tr><td>d</td><td>Distance in meters</td></tr>
+        <tr><td>f</td><td>Frequency in hertz</td></tr>
+        <tr><td>c</td><td>Speed of ligth in meters/s</td></tr>
+    </table>
+    <br>
+
+    <table class="formula-calculator"> 
+        <tr><td>Gain TX</td><td><input id="gain_tx" type="number" min="0" value="27"><label for="gain_tx">dB</label></td></tr>
+        <tr><td>Gain RX</td><td><input id="gain_rx" type="number" min="0" value="0"><label for="gain_rx">dB</label></td></tr>        
+        <tr><td>Frequency</td><td><input id="frequency" type="number" min="0" value="530000"><label for="frequency">Hz</label></td></tr>
+        <tr><td>Distance</td><td><input id="distance" type="number" min="0" value="1"><label for="distance">Meters</label></td></tr>
+        <tr><td>Impedance</td><td><input id="impedance" type="number" min="0" value="17000"><label for="impedance">Ohm</label></td></tr>
+        <tr><td>Speed of light</td><td><input id="speed_of_ligth" type="number" disabled value="299792458"><label for="speed_of_ligth">Meters/s</label></td></tr>
+        <tr><td>Wavelength</td><td><input id="wavelength" type="number" disabled> <label for="wavelength">&lambda;</label></td></tr>
+        <tr><td>FSPL</td><td><input id="fspl" type="number" disabled><label for="fspl">dB</label></td></tr>
+        <tr><td>Power TX</td><td><input id="power_tx" type="number" disabled><label for="power_tx">Watt</label></td></tr>
+        <tr><td>Power RX</td><td><input id="power_rx_decibel" type="number" disabled><label for="power_rx_decibel">dB</label></td></tr>
+        <tr><td>Power RX</td><td><input id="power_rx_watt" type="number" disabled><label for="power_rx_watt">Watt</label></td></tr>
+        <tr><td>RMS RX</td><td><input  id="rms_rx" type="number" disabled><label for="rms_rx">Volt</label></td></tr>
+        <tr><td>Vpp RX</td><td><input id="vpp_rx" type="number" disabled><label for="vpp_rx">Volt</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/Free-space_path_loss" target="_blank">Wikipedia Free-space path loss</a>
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            $('#wavelength').val(
+                $('#speed_of_ligth').valAsFloat() / $('#frequency').valAsFloat()
+            );
+            
+            $('#power_tx').val(
+                0.001 * Math.pow(10,$('#gain_tx').valAsFloat()/10)
+            )
+
+            $('#fspl').val(
+                20*Math.log10($('#distance').valAsFloat()) + 20*Math.log10($('#frequency').valAsFloat()) + 20*Math.log10((4*Math.PI)/ $('#speed_of_ligth').valAsFloat())
+            )
+
+            if( $('#fspl').valAsFloat() > 0 )
+                $('#power_rx_decibel').val(-Math.abs($('#fspl').valAsFloat()) + $('#gain_tx').valAsFloat() + $('#gain_rx').valAsFloat())
+            else
+                $('#power_rx_decibel').val($('#gain_tx').valAsFloat() + $('#gain_rx').valAsFloat())
+            
+            $('#power_rx_watt').val(
+                0.001 * Math.pow(10,$('#power_rx_decibel').valAsFloat()/10)
+            )
+
+            $('#rms_rx').val(
+                Math.sqrt($('#power_rx_watt').valAsFloat()/$('#impedance').valAsFloat())
+            )
+
+            $('#vpp_rx').val(
+                Math.sqrt(2)*$('#rms_rx').valAsFloat()*2
+            )
+        }
+        );
+    </script>
+
+</body>
+</html>

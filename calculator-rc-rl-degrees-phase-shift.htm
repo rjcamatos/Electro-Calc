@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Serie RC or RL Degrees Phase Shift Calculator</title>
+    <meta name="description" content="Serie RC or RL Degrees Phase Shift - Compute the Phase Shift of a circuit composed by a Resistor and Capacitor os a Resistor and Inductor in series.">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Serie RC or RL Degrees Phase Shift Calculator">
+    <meta property="og:description" content="Serie RC or RL Degrees Phase Shift - Compute the Phase Shift of a circuit composed by a Resistor and Capacitor os a Resistor and Inductor in series.">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Serie RC or RL Degrees Phase Shift Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for Serie RC or RL Degrees Phase Shift:</h2>
+    <p class="brief-text"></p>
+    <p class="brief-text"></p>
+    <p class="brief-text"></p>
+    <h2 class="brief-title">Brief for Serie RC or RL Degrees Phase Shift Calculator:</h2>
+    <p class="brief-text"></p>
+    <p class="brief-text"></p>
+    <br>
+
+    <img class="formula-math" alt="RC or RL Degrees Phase Shift formula" src="https://latex.codecogs.com/svg.image?A_%7B%28rad%29%7D%3DATan%5Cleft%28%5Cfrac%7BR%7D%7BX_%7B%28L%2CC%29%7D%7D%5Cright%29">
+    <br>
+
+    <table class="formula-terms">
+        <tr><td>R</td><td>Resistance in Ohms</td></tr>
+        <tr><td>X(L,C)</td><td>Inductor or Capacitor Reactance</td></tr>
+        <tr><td>Ang.</td><td>Angle in Degress</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>R</td><td><input id="R" type="number" min="0" value="1.000e+3"><label for="R">&Omega;</label></td></tr>
+        <tr><td>X(L,C)</td><td><input id="LC" type="number" min="0" value="1.000e+3"><label for="LC">&Omega;</label></td></tr>
+        <tr><td>Ang.</td><td><input id="A" type="number" min="0" value=""><label for="A">º</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    <br>
+
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+   
+    <img style="margin:auto;text-align: center; display: block;" alt="RC or RL Degrees Phase Shift Schema" src="img/rc-rl-degrees-phase-shift.webp">
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="RC or RL Degrees Phase Shift Example Schema" src="img/rc-rl-degrees-phase-shift-example-schema.webp">
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="RC or RL Degrees Phase Shift Example Plot" src="img/rc-rl-degrees-phase-shift-example-plot.webp">
+    <br>
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            if( $('#R').valAsFloat() && $('#LC').valAsFloat() ) {
+                  $('#A').val(180/Math.PI*Math.atan($('#R').valAsFloat() / $('#LC').valAsFloat()) );
+                  return
+            }
+
+            if( $('#R').valAsFloat() && $('#A').valAsFloat() ) {
+                  $('#LC').val( toExp( Math.tan($('#A').valAsFloat()*(Math.PI/180))*$('#R').valAsFloat()) );
+                  return
+            }
+
+            if( $('#LC').valAsFloat() && $('#A').valAsFloat() ) {
+                  $('#R').val( toExp( Math.tan($('#A').valAsFloat()*(Math.PI/180))*$('#LC').valAsFloat() ) );
+                  return
+            }
+
+        });
+    </script>
+
+</body>
+</html>

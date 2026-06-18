@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LC Resonance Calculator</title>
+    <meta name="description" content="Resonace LC (Inductor, Capacitor) - Compute the frequency of a ressonat circuit composed by an inductor and capacitor in series or parallel, for RF tank ciruits">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - LC Resonance Calculator">
+    <meta property="og:description" content="Resonace LC (Inductor, Capacitor) - Compute the frequency of a ressonat circuit composed by an inductor and capacitor in series or parallel, for RF tank ciruits">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">LC Resonance Calculator</h1>
+
+    <h2 class="brief-title">Brief for LC Resonance Circuit:</h2>
+    <p class="brief-text">The LC circuit enters resonance when the magnitude of the Capacitive and Inductive Reactance cancel each other, when passing a certain frequency.</p>
+    <p class="brief-text">The coil stores its energy in the form of a magnetic field, while the capacitor stores it in an electric field.</p>
+    <p class="brief-text">When connected in series or parallel (see image below), energy at a given frequency begins to be transferred between the two, thus causing a resonance.</p>
+    <p class="brief-text">This resonance occurs when the inductive and capacitive reactances are equal at a given frequency.</p>
+    <p class="brief-text">These properties cause radio waves, or once excited, to begin to exhibit their properties.</p>
+    <h2 class="brief-title">Brief for LC Resonance Calculator:</h2>
+    <p class="brief-text">Here is possible to compute the L (inductor) and C (capacitor) for a tuned LC tank in serie or parallel. When the reactance of C and L cancel each other it enters in resonance.</p>
+    <p class="brief-text">Fill two of the three fields to compute de desired value, the frequency, the capcitance or the indutance.</p>
+    <br>
+
+    <img class="formula-math" alt="LC Resonance formula" src="https://latex.codecogs.com/svg.image?f%3D%5Cfrac%7B1%7D%7B2%20%5Cpi%20Sqrt(%20C%20L)%7D">
+    <table class="formula-terms">
+        <tr><td>f</td><td>Frequency in hertz</td></tr>
+        <tr><td>C</td><td>Capacitance in farad</td></tr>
+        <tr><td>L</td><td>Inductance in henry</td></tr>
+    </table>
+    <br>
+
+    <table class="formula-calculator">
+        <tr><td>f</td><td><input id="frequency" type="number" min="0" value="100e+6"><label for="frequency">Hz</label></td></tr>
+        <tr><td>C</td><td><input id="capacitance" type="number" min="0" value="1e-12"><label for="capacitance">F</label></td></tr>
+        <tr><td>L</td><td><input id="inductance" type="number" min="0" value=""><label for="inductance">H</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="LC resonance tank circuit schematic" src="img/resonance-lc.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/LC_circuit" target="_blank">Wikipedia LC Circuit</a>
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            if( $('#capacitance').valAsFloat() && $('#inductance').valAsFloat() ) {
+                $('#frequency').val( toExp(1/(2*Math.PI*Math.sqrt($('#capacitance').valAsFloat()*$('#inductance').valAsFloat()))) )
+                return
+            }     
+            if( $('#frequency').valAsFloat() && $('#inductance').valAsFloat() ) {
+                $('#capacitance').val( toExp(Math.pow(1/($('#frequency').valAsFloat()*Math.PI*2*Math.sqrt($('#inductance').valAsFloat())),2)) )
+                return
+            }
+            if( $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                $('#inductance').val( toExp(Math.pow(1/($('#frequency').valAsFloat()*Math.PI*2*Math.sqrt($('#capacitance').valAsFloat())),2)) )
+                return
+            }
+        });
+    </script>
+
+</body>
+</html>

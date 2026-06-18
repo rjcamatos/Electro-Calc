@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ripple Voltage Calculator</title>
+    <meta name="description" content="Calculator for suppressing Ripple Voltage in a circuit using a Capacitor, commonly used for rectifier bridges.">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Ripple Voltage Calculator">
+    <meta property="og:description" content="Calculator for suppressing Ripple Voltage in a circuit using a Capacitor, commonly used for rectifier bridges.">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Ripple Voltage Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for Ripple Voltage:</h2>
+    <p class="brief-text">Voltage ripple in a circuit is found at the output of a transformer after rectifying an AC voltage, by placing a capacitor in parallel. It occurs when there are spontaneous current demands consumed by a circuit, and it has been incorrectly dimensioned in order to suppress them, or when a capacitor has not yet been added, in which case it is a one hundred percent ripple.</p>
+    <p class="brief-text">The formula is based on the principle of the "capacitor charging formula," adding the frequency term as a divisor of the desired maximum current in order to obtain the current value in a single cycle.</p>
+    <p class="brief-text">For a full-wave rectifier, multiply the actual frequency value by 2 and enter the result in the frequency field. For a half-wave rectifier, simply enter the actual frequency value.</p>
+    <br>
+    <h2 class="brief-title">Brief for Ripple Voltage Calculator:</h2>
+    <p class="brief-text">Fill in three of the four fields to obtain the current, capacitance, frequency, or voltage.</p>
+    <br>
+
+    <img class="formula-math" alt="Ripple Voltage formula" src="https://latex.codecogs.com/svg.image?C%20%3D%20%5Cfrac%7BI%20%5Cdiv%20f%7D%7BV%7D">
+    <table class="formula-terms">
+        <tr><td>C</td><td>Capacitance in farad</td></tr>
+        <tr><td>I</td><td>Current in amper</td></tr>
+        <tr><td>f</td><td>Frequency in hertz</td></tr>
+        <tr><td>V</td><td>Alternated current in volts</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">        
+        <tr><td>I</td><td><input id="current" type="number" min="0" value="1"><label for="current">A</label></td></tr>
+        <tr><td>f</td><td><input id="frequency" type="number" min="0" value="50"><label for="frequency">Hz</label></td></tr>
+        <tr><td>V</td><td><input id="volts" type="number" min="0" value="6.6"><label for="volts">V</label></td></tr>
+        <tr><td>C</td><td><input id="capacitance" type="number" min="0" value=""><label for="capacitance">F</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="Ripple Voltage circuit schematic" src="img/ripple-voltage.webp">
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="Ripple Voltage plot" src="img/ripple-voltage-plot.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/Capacitor" target="_blank">Wikipedia Capacitor</a>
+
+    <script src="js/electro-math.js"></script>
+    <script>
+        x = new ElectroMath()
+        $('#calculate').on('click',null,function(){
+            if( $('#current').valAsFloat() && $('#frequency').valAsFloat() && $('#volts').valAsFloat() ) {
+                $('#capacitance').val(toExp( $('#current').valAsFloat() /  $('#frequency').valAsFloat()  / $('#volts').valAsFloat()  ))
+                return
+            }
+
+            if( $('#current').valAsFloat() && $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                $('#volts').val(toExp( $('#current').valAsFloat() /  $('#frequency').valAsFloat() / $('#capacitance').valAsFloat()  ))
+                return
+            }
+
+            if( $('#current').valAsFloat() && $('#capacitance').valAsFloat() && $('#volts').valAsFloat() ) {
+                $('#frequency').val(toExp( $('#current').valAsFloat() /  $('#capacitance').valAsFloat() / $('#volts').valAsFloat()  ))
+                return
+            }
+
+            if( $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() && $('#volts').valAsFloat() ) {
+                $('#current').val(toExp( $('#frequency').valAsFloat() *  $('#volts').valAsFloat() * $('#capacitance').valAsFloat()  ))
+                return
+            }
+
+        });
+    </script>
+
+</body>
+</html>

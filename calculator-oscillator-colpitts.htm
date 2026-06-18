@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Colpitts Oscillator Calculator</title>
+    <meta name="description" content="Collpits Oscillator - Compute the Collpits Oscillator circuit, the tank current and frequency, the npn collector current and base current as well C coupling">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Colpitts Oscillator Calculator">
+    <meta property="og:description" content="Collpits Oscillator - Compute the Collpits Oscillator circuit, the tank current and frequency, the npn collector current and base current as well C coupling">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Colpitts Oscillator Calculator</h1>
+
+    <h2 class="brief-title">Brief for Colpitts Oscillator Circuit:</h2>
+    <p class="brief-text">The Colpitts oscillator is represented as a tank circuit composed of an inductor and two capacitors, with the capacitors connected in series.</p>
+    <p class="brief-text">In this case, an NPN transistor is used to maintain the oscillation of the tank circuit.</p>
+    <p class="brief-text"><b>ATTENTION:</b> Run simulattion with: Start external DC Supply Voltages at 0V.</p>
+    <p class="brief-text">See schematic at bottom of page.</p>
+    <h2 class="brief-title">Brief for Colpitts Oscillator Calculator:</h2>
+    <p class="brief-text">Here you can compute the components for a Colpitts Oscillator tank circuit by simply entering the values ​​of the terms referenced below.</p>
+    <p class="brief-text"><b>ATTENTION:</b> To ensure Oscillation ocours make Ic &le; Itank.</p>
+    <p class="brief-text">Obtaining the values ​​to substitute into the circuit shown at the end of the page.</p>
+    <br>
+
+    <table class="formula-terms">
+        <tr><td>VCC</td><td>Voltage in volts</td></tr>
+        <tr><td>Ic</td><td>Collector current in amper</td></tr>
+        <tr><td>Itank</td><td>Tank current in amper</td></tr>
+        <tr><td>f</td><td>Frequency in hertz</td></tr>
+        <tr><td>Hfe</td><td>Transistor gain</td></tr>
+        <tr><td>Ztank</td><td>Output impedance in ohms</td></tr>
+    </table>
+    <br>
+
+    <table class="formula-calculator">
+        <tr><td>VCC</td><td><input id="vcc" type="number" min="0" value="9"><label for="vcc">V</label></td></tr>
+        <tr><td>Ic</td><td><input id="ic" type="number" min="0" value="0.004"><label for="ic">A</label></td></tr>
+        <tr><td>Itank</td><td><input id="itank" type="number" min="0" value="0.450"><label for="itank">A</label></td></tr>
+        <tr><td>f</td><td><input id="f" type="number" min="0" value="1000000"><label for="f">Hz</label></td></tr>
+        <tr><td>Hfe</td><td><input id="hfe" type="number" min="0" value="400"><label for="hfe">&Beta;</label></td></tr>
+        <tr><td>Rc</td><td><input id="rc" type="number" min="0" value="" disabled><label for="rc">&Omega;</label></td></tr>
+        <tr><td>Re</td><td><input id="re" type="number" min="0" value="" disabled><label for="re">&Omega;</label></td></tr>
+        <tr><td>Rb</td><td><input id="rb" type="number" min="0" value="" disabled><label for="rb">&Omega;</label></td></tr>
+        <tr><td>L1</td><td><input id="l1" type="number" min="0" value="" disabled><label for="l1">H</label></td></tr>
+        <tr><td>C1,C2</td><td><input id="c1c2" type="number" min="0" value="" disabled><label for="c1c2">F</label></td></tr>
+        <tr><td>Cc</td><td><input id="cc" type="number" min="0" value="" disabled><label for="cc">F</label></td></tr>
+        <tr><td>Ztank</td><td><input id="ztank" type="number" min="0" value="" disabled><label for="ztank">&Omega;</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="Colpitts Oscillator schematic" src="img/colpitts-oscillator.webp">
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="Colpitts Oscillator plot" src="img/colpitts-oscillator-plot.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org" target="_blank">Wikipedia</a>
+
+   
+    <script src="js/electro-math.js"></script>
+    <script>
+        $('#calculate').on('click',null,function(){
+                $('#rc').val( toExp( ($('#vcc').valAsFloat()-1) / $('#ic').valAsFloat() ) )
+                $('#re').val( toExp( 1 / $('#ic').valAsFloat()) )
+                $('#rb').val( toExp( ($('#vcc').valAsFloat()-0.8)  / ($('#ic').valAsFloat() / $('#hfe').valAsFloat()) ) )
+                
+                x = new ElectroMath()
+
+                x.reactanceInductive.clear();
+                x.reactanceInductive.f( $('#f').valAsFloat() )
+                x.reactanceInductive.X( $('#vcc').valAsFloat() / $('#itank').valAsFloat() )
+                x.reactanceInductive.compute()
+                $('#l1').val(toExp(x.reactanceInductive.L()))
+
+                x.reactanceCapacitive.clear()
+                x.reactanceCapacitive.f($('#f').valAsFloat())
+                x.reactanceCapacitive.X( $('#vcc').valAsFloat() / $('#itank').valAsFloat() / 2)
+                x.reactanceCapacitive.compute()
+                $('#c1c2').val(toExp(x.reactanceCapacitive.C()))
+
+                x.reactanceCapacitive.clear()
+                x.reactanceCapacitive.f($('#f').valAsFloat())
+                x.reactanceCapacitive.X( ($('#vcc').valAsFloat()-0.8)  / ($('#ic').valAsFloat() / $('#hfe').valAsFloat() * 20) )
+                x.reactanceCapacitive.compute()
+                $('#cc').val(toExp(x.reactanceCapacitive.C()))
+                
+                $('#ztank').val(toExp( Math.sqrt( $('#l1').valAsFloat() / ($('#c1c2').valAsFloat()/2) ) ))
+
+        });
+    </script>
+
+</body>
+</html>

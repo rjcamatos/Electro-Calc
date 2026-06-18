@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Decibel Power Calculator</title>
+    <meta name="description" content="Decibel Power (dB) Calculator - Slove the Decibel Power, The decibel power the logarithmic of a none linear system power where we need to know a certain value">
+ 
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Decibel Power Calculator">
+    <meta property="og:description" content="Decibel Power (dB) Calculator - Slove the Decibel Power, The decibel power the logarithmic of a none linear system power where we need to know a certain value">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Decibel Power Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for Decibel (dB):</h2>
+    <p class="brief-text">Decibel is a mesurment where the amplitude or power is mesured in the inverse of exponetial, multiplied by 10 for power relative to a reference level.</p>
+    <p class="brief-text">It's used when the grow is not linear.</p>
+    <h2 class="brief-title">Brief for Decibel Power (dB) Calculator:</h2>
+    <p class="brief-text">Compute any given power in the form of logarithmic Decibel (dB) using a value as reference.</p>
+    <p class="brief-text">Fill two of the three fields to compute the desired value, the reference, the referenced or dB (Decibel).</p>
+    <p class="brief-text">For an RF signal fill in reference 0.001 (1mW), that it stands for dBm.</p>
+    <br>
+
+    <img class="formula-math"  alt="decibel power formula" src="https://latex.codecogs.com/svg.image?dB%3D10%20Log_%7B10%7D%5Cleft(%5Cfrac%7Brefer%7D%7Bref%7D%5Cright)">
+    <table class="formula-terms">
+        <tr><td>Refer</td><td>The referenced power</td></tr>
+        <tr><td>Ref</td><td>The reference power</td></tr>
+    </table>
+    <br>
+
+    <table class="formula-calculator">
+        <tr><td>Refer</td><td><input id="referenced" type="number" value="10"><label for="referenced">P</label></td></tr>
+        <tr><td>Ref</td><td><input id="reference" type="number" value="1"><label for="reference">P</label></td></tr>
+        <tr><td>dB</td><td><input id="decibel" type="number" value=""><label for="decibel">dB</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+   
+
+    <script src="js/electro-math.js"></script>
+    <script>
+        x = new ElectroMath()
+        $('#calculate').on('click',null,function(){
+            x.decibelPower.clear()
+            if( $('#referenced').valAsFloat() && $('#reference').valAsFloat() ) {
+                x.decibelPower.Refer($('#referenced').valAsFloat())
+                x.decibelPower.Ref($('#reference').valAsFloat())
+                x.decibelPower.compute()
+                $('#decibel').val(x.decibelPower.dB())
+                return
+            }
+            if( $('#reference').valAsFloat() && $('#decibel').valAsFloat() ) {
+                x.decibelPower.Ref($('#reference').valAsFloat())
+                x.decibelPower.dB($('#decibel').valAsFloat())
+                x.decibelPower.compute();
+                $('#referenced').val(x.decibelPower.Refer())
+                return
+            }
+            if( $('#referenced').valAsFloat() && $('#decibel').valAsFloat() ) {
+                x.decibelPower.Refer($('#referenced').valAsFloat())
+                x.decibelPower.dB($('#decibel').valAsFloat())
+                x.decibelPower.compute()
+                $('#reference').val(x.decibelPower.Ref())
+                return
+            }
+        });
+    </script>
+
+</body>
+</html>

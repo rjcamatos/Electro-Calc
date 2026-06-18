@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RMS Vp, DC Calculator</title>
+    <meta name="description" content="Eletronic RMS to DC Converter - Convert Alternate Current Root Mean Square (AC RMS) to Direct Current (DC), submited to circuit with a bridge rectifier">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - RMS Vp, DC Calculator">
+    <meta property="og:description" content="Eletronic RMS to DC Converter - Convert Alternate Current Root Mean Square (AC RMS) to Direct Current (DC), submited to circuit with a bridge rectifier">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">RMS Vp/DC Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for RMS Vp/DC:</h2>
+    <p class="brief-text">RMS Volt - The same power of DC volt when dissipated.</p>
+    <p class="brief-text">DC Volt - Direct Current.</p>
+    <p class="brief-text">Vp Volt - Volt peak half of volt peak to peak.</p>
+    <h2 class="brief-title">Brief for RMS Vp/DC Calculator:</h2>
+    <p class="brief-text">Compute RMS Volt (root mean square) to DC (direct-current) / Vp (volt-peak).</p>
+    <p class="brief-text">Fill one of the two fields to compute the desired value, the RMS or the DC, Vp.</p>
+    <br>
+
+    <img class="formula-math" alt="RMS to DC formula" src="https://latex.codecogs.com/svg.image?v_%7Brms%7D%3D%5Cfrac%7Bv_%7Bp%7D%7D%7BSqrt(2)%7D">
+    <table class="formula-terms">
+        <tr><td>RMS</td><td>Root Mean Square Volt</td></tr>
+        <tr><td>Vp</td><td>Volt-peak</td></tr>
+        <tr><td>DC</td><td>Direct-current</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>RMS</td><td><input id="rms" type="number" min="0" value="230"><label for="rms">V</label></td></tr>
+        <tr><td>DC,Vp</td><td><input id="vp_dc" type="number" min="0" value=""><label for="vp_dc">V</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            if( $('#rms').valAsFloat() ) {
+                  $('#vp_dc').val( $('#rms').valAsFloat() * Math.sqrt(2) );
+                  return
+            }
+        
+            if( $('#vp_dc').valAsFloat() ) {
+                $('#rms').val( $('#vp_dc').valAsFloat() / Math.sqrt(2) );
+                return
+            }
+
+        });
+    </script>
+
+</body>
+</html>

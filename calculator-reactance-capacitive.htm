@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Capacitive Reactance Calculator</title>
+    <meta name="description" content="Capacitive Reactance C (Capacitor) Calculator - Slove the reatance (in Ohm, opposition to AC current flow) of an Capacitor at a given frequency, or vice-versa">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Capacitive Reactance Calculator">
+    <meta property="og:description" content="Capacitive Reactance C (Capacitor) Calculator - Slove the reatance (in Ohm, opposition to AC current flow) of an Capacitor at a given frequency, or vice-versa">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Capacitive Reactance Calculator</h1>
+    <br>
+    
+    <h2 class="brief-title">Brief for Capacitive Reactance (XC):</h2>
+    <p class="brief-text">Capacitive Reactance XC is the capacity of an capacitor impose to alternate current flow this is measured in ohms.</p>
+    <br>
+    <h2 class="brief-title">Brief for XC Calculator:</h2>
+    <p class="brief-text">Fill two of the three fields to compute de desired value, the frequency, the reactance or the capacitance.</p>
+    <br>
+
+    <img class="formula-math" alt="Capacitive Reactance formula" src="https://latex.codecogs.com/svg.image?f%3D%5Cfrac%7B1%7D%7B2%20%5Cpi%20X_%7BC%7D%20C%7D">
+    <table class="formula-terms">
+        <tr><td>f</td><td>Frequency in hertz</td></tr>
+        <tr><td>X(C)</td><td>Reactance in ohm</td></tr>
+        <tr><td>C</td><td>Capacitance farad</td></tr>
+    </table>
+    <br>
+
+
+    
+    <table class="formula-calculator">
+        <tr><td>f</td><td><input id="frequency" type="number" min="0" value="100e+6"><label for="frequency">Hz</label></td></tr>
+        <tr><td>X(C)</td><td><input id="reactance" type="number" min="0" value="1e+3"><label for="reactance">&Omega;</label></td></tr>
+        <tr><td>C</td><td><input id="capacitance" type="number" min="0"><label for="capacitance">F</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+    
+    <img style="margin:auto;text-align: center; display: block;" alt="capacitive reactance schematic" src="img/reactance-capacitive.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/Electrical_reactance" target="_blank">Wikipedia Eletrical Reactance</a>
+
+   
+
+    <script src="js/electro-math.js"></script>
+    <script>
+        x = new ElectroMath()
+        $('#calculate').on('click',null,function(){
+            x.reactanceCapacitive.clear();
+            if( $('#reactance').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                x.reactanceCapacitive.X($('#reactance').valAsFloat())
+                x.reactanceCapacitive.C($('#capacitance').valAsFloat())
+                x.reactanceCapacitive.compute()
+                $('#frequency').val(toExp(x.reactanceCapacitive.f()))
+                return
+            }
+            if( $('#frequency').valAsFloat() && $('#reactance').valAsFloat() ) {
+                x.reactanceCapacitive.f($('#frequency').valAsFloat())
+                x.reactanceCapacitive.X($('#reactance').valAsFloat())
+                x.reactanceCapacitive.compute()
+                $('#capacitance').val(toExp(x.reactanceCapacitive.C()))
+                return
+            }
+            if( $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                x.reactanceCapacitive.f($('#frequency').valAsFloat())
+                x.reactanceCapacitive.C($('#capacitance').valAsFloat())
+                x.reactanceCapacitive.compute()
+                $('#reactance').val(toExp(x.reactanceCapacitive.X()))
+                return
+            }
+        })
+    </script>
+
+</body>
+</html>

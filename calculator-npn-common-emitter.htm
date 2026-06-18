@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NPN Common Emitter Calculator</title>
+    <meta name="description" content="Eletronic NPN Transistor Common Emitter Amplifier Calculator - Slove the small signal amplifier of a well konwn circut that takes a signal and amplify">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - NPN Common Emitter Calculator">
+    <meta property="og:description" content="Eletronic NPN Transistor Common Emitter Amplifier Calculator - Slove the small signal amplifier of a well konwn circut that takes a signal and amplify">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">NPN Common Emitter Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for NPN Common Emmiter arrangement :</h2>
+    <p class="brief-text">Before proceed reading see circuit diagram at end of page!</p>
+    <p class="brief-text">On collector we have a current "IC" causing a voltage drop "IC*RC" where "IC" is "IB" multiplied by "hFE", on base we have a current "I RB" causing voltage drop to "VB" that need to be "VS" + "VE" + 0.6, on emitter we have a current "IB" plus "IC" causing a voltage drop on "RE" that need to be "VE"; for more gain we have "CE" 1/10th of "RE".</p>
+    <h2 class="brief-title">Brief for NPN Common Emitter Calculator:</h2>
+    <p class="brief-text">This is a calculator to compute the NPN Transistor in common emitter arrangement, Click on (i) for brief description of fields, it's possible to compute de CE (capacitor on emitter leg) on Capacitive Reactance Calculator using as frequency the minimum required to pass, and X(C) the value on the CE field.</p>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>VCC <div class="info" onclick="javacript:alert('Power Supply Voltage');">(i)</div></td><td><input id="vcc" type="number" min="0" value="12"><label for="vcc">V</label></td></tr>
+        <tr><td>VC <div class="info" onclick="javacript:alert('Collector Voltage');">(i)</div></td><td><input id="vc" type="number" min="0" value="6"><label for="vc">V</label></td></tr>
+        <tr><td>VE <div class="info" onclick="javacript:alert('Emitter Voltage');">(i)</div></td><td><input id="ve" type="number" min="0" value="1"><label for="ve">V</label></td></tr>
+        <tr><td>VS <div class="info" onclick="javacript:alert('Input Signal Voltage Amplitude');">(i)</div></td><td><input id="vs" type="number" min="0" value="0.1"><label for="vs">V</label></td></tr>
+        <tr><td>Hfe <div class="info" onclick="javacript:alert('Transistor Current Gain');">(i)</div></td><td><input id="hfe" type="number" min="0" value="100"><label for="hfe">&beta;</label></td></tr>
+        <tr><td>IC <div class="info" onclick="javacript:alert('Collector Current');">(i)</div></td><td><input id="ic" type="number" min="0" value="0.01"><label for="ic">A</label></td></tr>
+        <tr><td>VCE</td><td><input id="vce" type="number" disabled><label for="vce">V</label></td></tr>
+        <tr><td>VB</td><td><input id="vb" type="number" disabled><label for="vb">V</label></td></tr>
+        <tr><td>IB</td><td><input id="ib" type="number" disabled><label for="ib">A</label></td></tr>
+        <tr><td>IE</td><td><input id="ie" type="number" disabled><label for="ie">A</label></td></tr>
+        <tr><td>RC</td><td><input id="rc" type="number" disabled><label for="rc">&Omega;</label></td></tr>
+        <tr><td>RE</td><td><input id="re" type="number" disabled><label for="re">&Omega;</label></td></tr>
+        <tr><td>RB</td><td><input id="rb" type="number" disabled><label for="rb">&Omega;</label></td></tr>
+        <tr><td>CE</td><td><input id="ce" type="number" disabled><label for="ce">&Omega;</label></td></tr>
+        <tr><td>ZIN</td><td><input id="zin" type="number" disabled><label for="zin">&Omega;</label></td></tr>
+        <tr><td>AV</td><td><input id="av" type="number" disabled><label for="av">Gain</label></td></tr>
+        <tr><td>ZOUT</td><td><input id="zout" type="number" disabled><label for="zout">&Omega;</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="transistor common emitter configuration schematic" src="img/npn-common-emitter.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://www.electronics-tutorials.ws/amplifier/amp_2.html" target="_blank">Eletronics Tutorials NPN Common Emitter</a>
+    <a class="references-link" href="https://www.electronics-tutorials.ws/amplifier/input-impedance-of-an-amplifier.html" target="_blank">Eletronics Tutorials Transistor Impedance</a>
+    <a class="references-link" href="https://www.electronicshub.org/different-configurations-of-transistors/" target="_blank">EletronicsHub Different configurations transistors</a>
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            $('#vce').val( $('#vcc').valAsFloat() - $('#vc').valAsFloat() - $('#ve').valAsFloat() )
+            $('#vb').val( $('#ve').valAsFloat() + $('#vs').valAsFloat() + 0.6 )
+            $('#ib').val( $('#ic').valAsFloat() / $('#hfe').valAsFloat() )
+            $('#ie').val( $('#ic').valAsFloat() + $('#ib').valAsFloat() )
+            $('#rc').val( ($('#vcc').valAsFloat() - $('#vc').valAsFloat()) / $('#ic').valAsFloat() )
+            $('#re').val( $('#ve').valAsFloat() / $('#ie').valAsFloat() )
+            $('#rb').val( ($('#vcc').valAsFloat() - $('#vb').valAsFloat()) / $('#ib').valAsFloat() )
+            $('#ce').val( $('#re').valAsFloat() / 10 )
+            $('#zin').val( 1 / ( 1/$('#rb').valAsFloat() + 1/$('#rc').valAsFloat() + 1/((0.025/$('#ie').valAsFloat())* $('#hfe').valAsFloat()) ) )
+            $('#av').val( $('#rc').valAsFloat() / $('#ce').valAsFloat() )
+            $('#zout').val( $('#rc').valAsFloat() )
+        });
+    </script>
+
+
+</body>
+</html>

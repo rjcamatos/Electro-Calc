@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RC Phase Shift Oscillator Calculator</title>
+    <meta name="description" content="RC Phase Shift Oscillator Calculator - A calculator for the time of a well known circuit, used where is required a LF (low frequency) application signal">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - RC Phase Shift Oscillator Calculator">
+    <meta property="og:description" content="RC Phase Shift Oscillator Calculator - A calculator for the time of a well known circuit, used where is required a LF (low frequency) application signal">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">RC Phase Shift Oscillator Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for RC Phase Shift Oscillator:</h2>
+    <p class="brief-text">This circuit is commonly used to create LFO (low frequency oscillator) oscillators, for frequencies ranging from a few Hertz to a few Kilo-Herts..</p>
+    <p class="brief-text">For oscillation to occur in the Hertz range, use capacitances in the range of micro-Henry units. For the Kilo-Hertz range, use capacitances of a few nano-Henry units.</p>
+    <p class="brief-text"><b>HOW TO IMPLEMENT (Tested from 50Hz to 500KHz):</b></p>
+    <p class="brief-text">First see the shematic image below.</p>
+    <p class="brief-text">The collector resistance value is RC=ZNet and the current is IC=VCC/Znet, for the base current IB=IC/Hfe (Hfe transistor gain), and the base resistance (RB) becomes (VCC-0.8)/IB.</p>
+    <p class="brief-text">To calculate the value of the coupling capacitor (C-Coupling): Use the capacitive reactance calculator, using this oscillation frequency, and the reactance the value of ZNet.</p>
+    <p class="brief-text">NOTE: If there is a large discrepancy in the oscillation value, adjust C-Coupling gradually.</p>
+    <p class="brief-text"><b>DON´T FORGET:</b>Start simulation with DC Power Supply set to 0 Volt.</p>
+    <h2 class="brief-title">Brief for RC Phase Shift Oscillator Calculator:</h2>
+    <p class="brief-text">Calculate the value of (F) frequency, R (resistance) or C (capacitance) by filling in two of the available fields, leaving the value of the desired element blank.</p>
+    <p class="brief-text">The other fields are used to compute the transistor polarization for correct maximum excursion, for basic polarization use upper anotation using the ZNet Impedance.</p>
+    <p class="brief-text">The Net R and the Net C are the values for RC Network to use in C1,2,3 and R1,2,3.</p>
+    <p class="brief-text">For Cpupling Capacitor (C-Coupling), use the capacitive reactance calculator, using this oscillation frequency, and the reactance the value of ZNet.</p>
+    <br>
+
+    <img class="formula-math" alt="RMS to DC formula" src="https://latex.codecogs.com/svg.image?F%20%3D%20%5Cfrac%7B1%7D%7B2*%5Cpi*R*C*Sqrt(N)%7D">
+    <table class="formula-terms">
+        <tr><td>F</td><td>Frequency in Hertz</td></tr>
+        <tr><td>R</td><td>Resistance in Ohm</td></tr>
+        <tr><td>C</td><td>Capacitance in Farad</td></tr>
+        <tr><td>N</td><td>Number of RC Network Stages (3 in these case)</td></tr>
+        <tr><td>ZNet</td><td>RC Network Impedance in Ohm</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>VCC</td><td><input id="VCC" type="number" min="0" value="5"><label for="VCC">V</label></td></tr>
+        <tr><td>Hfe</td><td><input id="HFE" type="number" min="0" value="100"><label for="HFE">&beta;</label></td></tr>
+        <tr><td>F</td><td><input id="F" type="number" min="0" value="50e+3"><label for="F">Hz</label></td></tr>
+        <tr><td>Net R</td><td><input id="R" type="number" min="0" value=""><label for="R">&Omega;</label></td></tr>
+        <tr><td>Net C</td><td><input id="C" type="number" min="0" value="1e-9"><label for="C">F</label></td></tr>
+        <tr><td>ZNet</td><td><input id="ZNet" type="number" min="0" value="" disabled><label for="ZNet">&Omega;</label></td></tr>
+        <tr><td>RC</td><td><input id="RC" type="number" min="0" value="" disabled><label for="RC">F</label></td></tr>
+        <tr><td>IC</td><td><input id="IC" type="number" min="0" value="" disabled><label for="IC">A</label></td></tr>
+        <tr><td>RB</td><td><input id="RB" type="number" min="0" value="" disabled><label for="RB">&Omega;</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+
+    <img style="margin:auto;text-align: center; display: block;" alt="RC Phase Shift Oscillator 50KHz Demonstration" src="img/rc-phase-shift-oscillator.webp">
+
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="RC Phase Shift Oscillator 50KHz Plot Demonstration" src="img/rc-phase-shift-oscillator-plot.webp">
+
+   
+
+    <script src="js/electro-math.js"></script>
+    <script>
+        function ComputeNetImpedance()  {
+            x = new ElectroMath()
+            x.reactanceCapacitive.clear();
+            x.reactanceCapacitive.C($('#C').valAsFloat())
+            x.reactanceCapacitive.f($('#F').valAsFloat())
+            x.reactanceCapacitive.compute()
+            $('#ZNet').val(toExp(x.reactanceCapacitive.X()/3))
+        }
+        function ComputePolarization() {
+            $('#IC').val( toExp( $('#VCC').valAsFloat() / $('#ZNet').valAsFloat() ) )
+            $('#RC').val( toExp( $('#VCC').valAsFloat() / ( ($('#VCC').valAsFloat()-0.8) / $('#ZNet').valAsFloat() ) ) )
+            $('#RB').val( toExp( ($('#VCC').valAsFloat()-0.8) / ($('#IC').valAsFloat()/$('#HFE').valAsFloat()) -  $('#ZNet').valAsFloat() ) )
+        }
+        $('#calculate').on('click',null,function(){
+            if( $('#R').valAsFloat() && $('#C').valAsFloat() ) {
+                    $('#F').val( toExp(1 / (2*Math.PI * $('#R').valAsFloat() * $('#C').valAsFloat() * Math.sqrt(3)))  );
+                    ComputeNetImpedance()
+                    ComputePolarization()
+                    return
+            }
+        
+            if( $('#R').valAsFloat() && $('#F').valAsFloat() ) {
+                    $('#C').val( toExp(1 / (2*Math.PI * $('#R').valAsFloat() * $('#F').valAsFloat() * Math.sqrt(3)))  );
+                    ComputeNetImpedance()
+                    ComputePolarization()
+                    return
+            }
+            
+            if( $('#C').valAsFloat() && $('#F').valAsFloat() ) {
+                    $('#R').val( toExp(1 / (2*Math.PI * $('#C').valAsFloat() * $('#F').valAsFloat() * Math.sqrt(3)))  );
+                    ComputeNetImpedance()
+                    ComputePolarization()
+                    return
+            }
+
+        });
+    </script>
+
+</body>
+</html>

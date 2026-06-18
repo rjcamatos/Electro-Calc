@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ideal Transformer Calculator</title>
+    <meta name="description" content="Eletronic Ideal Transformer Calculator - Compute an ideal transformer for a given in and out voltage, current at a given frequency, for simulation pruposes">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Ideal Transformer Calculator">
+    <meta property="og:description" content="Eletronic Ideal Transformer Calculator - Compute an ideal transformer for a given in and out voltage, current at a given frequency, for simulation pruposes">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Ideal Transformer Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief of Ideal Transformer:</h2>
+    <p class="brief-text">Assuming there are no losses, use the transformation ratio, it can be the number of turns, volt, current, etc.... of the primary relative to secondary, assuming there are no loses.</p>
+    
+    <h2 class="brief-title">Brief of Ideal Transformer Calculator:</h2>
+    <p class="brief-text">As say "Ideal", assume there are no losses!</p>
+    <p class="brief-text">Fill in the five fields to compute an ideal transformer.</p>
+    <p class="brief-text"><b>NOTE:</b>If the K (Coupling Coefficient) value is less than 1, fill in the secondary current field with the desired value divided by K.</p>
+    
+    <br>
+
+    <img class="formula-math" alt="transformer ratio formula" src="https://latex.codecogs.com/svg.image?Ratio%3D%5Cfrac%7BN_%7B1%7D%7D%7BN_%7B2%7D%7D">
+    <table class="formula-terms">
+        <tr><td>N(1)</td><td>Primary in current, laps, volt, etc... </td></tr>
+        <tr><td>N(2)</td><td>Secondary in current, laps, volt, etc... </td></tr>
+        <tr><td>Ratio</td><td>Transformer ratio</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>Frequency</td><td><input id="frequency" type="number" min="0" value="50"><label for="frequency">Hz</label></td></tr>
+        <tr><td>Primary RMS</td><td><input id="primary_rms" type="number" min="0" value="230"><label for="primary_rms">Vrms</label></td></tr>
+        <tr><td>Secondary RMS</td><td><input id="secondary_rms" type="number" min="0" value="8.5"><label for="secondary_rms">Vrms</label></td></tr>
+        <tr><td>Secodary Current RMS</td><td><input id="secondary_current" type="number" min="0" value="0.28"><label for="secondary_current">A</label></td></tr>
+        <tr><td>Coupling Coefficient</td><td><input id="coupling_coeffecient" step="0.1" type="number" min="0" max="1" value="0.5"><label for="coupling_coeffecient">K</label></td></tr>
+        <tr><td>Ratio</td><td><input id="ratio" type="number" min="0" disabled><label for="ratio">Turns</label></td></tr>
+        <tr><td>Primary Current RMS</td><td><input id="primary_current" type="number" disabled><label for="primary_current">A</label></td></tr>
+        <tr><td>Primary Inductance</td><td><input id="primary_inductance" type="number" disabled><label for="primary_inductance">H</label></td></tr>
+        <tr><td>Secondary Inductance</td><td><input id="secondary_inductance" type="number" disabled><label for="secondary_inductance">H</label></td></tr>
+        <tr><td>Primary Vp</td><td><input id="primary_vp" type="number" min="0" disabled><label for="primary_vp">Vp</label></td></tr>
+        <tr><td>Secondary Vp</td><td><input id="secondary_vp" type="number" min="0" disabled><label for="secondary_vp">Vp</label></td></tr>
+        <tr><td>Mutual Inductance</td><td><input id="mutual_inductance" type="number" min="0" disabled><label for="mutual_inductance">H</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="230V RMS to 12Vp Ideal Transformer Plot Schema" src="img/ideal-transformer.webp">
+    
+    <br>
+    <img style="margin:auto;text-align: center; display: block;" alt="230V RMS to 12Vp Ideal Transformer Schema" src="img/ideal-transformer-plot.webp">
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+            SEC_RMS = $('#secondary_rms').valAsFloat() / $('#coupling_coeffecient').valAsFloat()
+            SEC_CURR = $('#secondary_current').valAsFloat() / $('#coupling_coeffecient').valAsFloat()
+            $('#ratio').val( $('#primary_rms').valAsFloat() / SEC_RMS )
+            $('#primary_current').val( SEC_CURR / $('#ratio').valAsFloat() )
+            $('#primary_inductance').val( ($('#primary_rms').valAsFloat()/$('#primary_current').valAsFloat()) / (2*Math.PI*$('#frequency').valAsFloat()) )
+            $('#secondary_inductance').val( ( SEC_RMS / SEC_CURR ) / (2*Math.PI*$('#frequency').valAsFloat()) )
+            $('#primary_vp').val( $('#primary_rms').valAsFloat() * Math.sqrt(2) )
+            $('#secondary_vp').val( $('#secondary_rms').valAsFloat() * Math.sqrt(2) )
+            $('#mutual_inductance').val( Math.sqrt( $('#primary_inductance').valAsFloat() * $('#secondary_inductance').valAsFloat() ) )
+        });
+    </script>
+
+</body>
+</html>

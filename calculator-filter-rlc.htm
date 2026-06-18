@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Passive RLC Filter Calculator</title>
+    <meta name="description" content="RLC Filter Calculator (Resistor,Inductor,Capacitor) - band-stop, high-pass, low-pass and band-pass frequency solve a eletronic filter to specific frequency">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Passive RLC Filter Calculator">
+    <meta property="og:description" content="RLC Filter Calculator (Resistor,Inductor,Capacitor) - band-stop, high-pass, low-pass and band-pass frequency solve a eletronic filter to specific frequency">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Passive RLC Filter Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for RLC Filter Calculator:</h2>
+    <p class="brief-text">Compute the second order Passive RLC Filter using the given formula.
+    <p class="brief-text">Fill two of the three fields to compute the desired value, the frequency, the capcitance and the indutance.</p>
+    <p class="brief-text">Fill the resistance to ccompute the Q factor (quality of circuit), require all other fields filled in.</p>
+    <p class="brief-text">The resistance is used to compute the Q factor, Higher Q more selective is the filter.</p>
+    
+    <br>
+    <h2 class="brief-title">Brief for RLC Filter circuit:</h2>
+    <p class="brief-text">Below are the arragements of the RLC Filter circuit to act as band-stop, high-pass, low-pass and band-pass frequency. Just the arrangement dictates the type.</p>
+    <p class="brief-text">Inductors behave like a short circuit for low frequencies and like an open circuit for high frequencies.</p>
+    <p class="brief-text">Capacitors are the opposite, they behave like a short circuit for high frequencies and an open circuit for low frequencies.</p>
+    <p class="brief-text">Due to these properties, it is possible to build filters.</p>
+    <br>
+
+    <img class="formula-math" alt="LC filter formula" src="https://latex.codecogs.com/svg.image?f_%7Bo%7D%3D%5Cfrac%7B1%7D%7B2%5Cpi%26space%3BSqrt(LC)%7D">
+    <table class="formula-terms">
+        <tr><td>fo</td><td>Ressonance Frequency in hertz</td></tr>
+        <tr><td>C</td><td>Capacitance in farad</td></tr>
+        <tr><td>L</td><td>Inductance in henry</td></tr>
+        <tr><td>R</td><td>Resistance in ohms</td></tr>
+        <tr><td>Q</td><td>Quality factor</td></tr>
+        <tr><td>BW</td><td>Bandwidth 6dB in hertz</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>fo</td><td><input id="frequency" type="number" min="0" value="100e+6"><label for="frequency">Hz</label></td></tr>
+        <tr><td>C</td><td><input id="capacitance" type="number" min="0" value="100e-12"><label for="capacitance">F</label></td></tr>
+        <tr><td>L</td><td><input id="inductance" type="number" min="0" value=""><label for="inductance">H</label></td></tr>
+        <tr><td>R</td><td><input id="resistance" type="number" min="0" value="1"><label for="resistance">Ohm</label></td></tr>
+        <tr><td>Q</td><td><input id="q_factor" type="number" disabled value=""><label for="q_factor">Quality</label></td></tr>
+        <tr><td>BW 6dB</td><td><input id="bandwidth" type="number" disabled value=""><label for="bandwidth">Hz</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+    
+    <img style="margin:auto;text-align: center; display: block;" alt="LC filter schematic" src="img/filter-rlc.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/RLC_circuit" target="_blank">Wikipedia RLC circuit</a>
+
+   
+
+    <script src="js/electro-math.js"></script>
+    <script>
+        x = new ElectroMath()
+        $('#calculate').on('click',null,function(){
+            x.filterRLC.clear()
+            if( $('#capacitance').valAsFloat() && $('#inductance').valAsFloat() ) {
+                x.filterRLC.C($('#capacitance').valAsFloat());
+                x.filterRLC.L($('#inductance').valAsFloat());
+                x.filterRLC.compute();
+                doQFactor(x);
+                $('#frequency').val(toExp(x.filterRLC.fo()))
+                 return
+            }
+            if( $('#frequency').valAsFloat() && $('#inductance').valAsFloat() ) {
+                x.filterRLC.fo($('#frequency').valAsFloat());
+                x.filterRLC.L($('#inductance').valAsFloat());
+                x.filterRLC.compute();
+                doQFactor(x);
+                $('#capacitance').val(toExp(x.filterRLC.C()));
+                return
+            }
+            if( $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                x.filterRLC.fo($('#frequency').valAsFloat())
+                x.filterRLC.C($('#capacitance').valAsFloat())
+                x.filterRLC.compute()
+                doQFactor(x);
+                $('#inductance').val(toExp(x.filterRLC.L()))
+                return
+            }
+        });
+
+        function doQFactor(x) {
+                if( ! $('#resistance').valAsFloat() ) return;
+
+                x.filterRLC.R($('#resistance').valAsFloat())
+
+                x.filterRLC.compute()
+                $('#q_factor').val(toExp(x.filterRLC.Q()))
+
+                $('#bandwidth').val( toExp( x.filterRLC.BW()) )
+            }
+        
+
+    </script>
+
+</body>
+</html>

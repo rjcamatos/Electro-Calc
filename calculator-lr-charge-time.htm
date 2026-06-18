@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LR Charge time Calculator</title>
+    <meta name="description" content="LR (Inductor, Resistor) Charge Time Calculator - Slove the time it takes to full charge an inductor when submited to a given current flow in a given circuit">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - LR Charge Time Calculator">
+    <meta property="og:description" content="LR (Inductor, Resistor) Charge Time Calculator - Slove the time it takes to full charge an inductor when submited to a given current flow in a given circuit">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+    
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">LR Charge Time Calculator</h1>
+
+    <h2 class="brief-title">Brief for LR Charge Time Calculator:</h2>
+    <p class="brief-text">Compute the L (inductor), R (resistor) or t (time) for a inductor and resistor in series, powered by a DC voltage.</p>
+    <p class="brief-text">Fill two of the three fields to compute the desired value, the inductance, the resistance or the time.</p>
+    <br>
+    <h2 class="brief-title">Brief for LR Charge Time Circuit:</h2>
+    <p class="brief-text">The LR Charge Time Circuit consists of an inductor and resistor in series powered by a DC volatge, when time is 0 seconds (trun on the switch), it starts charging until it reach ~99% of the supply voltage (&tau;5), at that time maximum current (acounting with resistance) is passing  through the circuit.</p>
+    <img class="formula-math" alt="RC Charge Time formula" src="https://latex.codecogs.com/svg.image?%5Ctau%3D%5Cfrac%7BL%7D%7BR%7D">
+
+    <table class="formula-terms">
+        <tr><td>&tau;</td><td>Time in seconds, ~63% of charge</td></tr>
+        <tr><td>t5</td><td>Time in seconds, ~99% of charge</td></tr>
+        <tr><td>R</td><td>Resistance in Ohm</td></tr>
+        <tr><td>L</td><td>Inductance in Henry</td></tr>
+    </table>
+    <br>
+
+    
+    <table class="formula-calculator">
+        <tr><td>&tau;</td><td><input id="t" type="number" min="0"><label for="t">s</label></td></tr>
+        <tr><td>R</td><td><input id="r" type="number" min="0" value="10e+0"><label for="r">&Omega;</label></td></tr>
+        <tr><td>L</td><td><input id="l" type="number" min="0" value="1e-6"><label for="c">H</label></td></tr>        
+        <tr><td>&tau;5</td><td><input id="t5" type="number" disabled><label for="t5">~99% Charge</label></td></tr>
+        <tr><td>At</td><td><input id="nPercent" type="number" min="0" max="100" value="63.212"><label for="nPercent">%</label></td></tr>
+        <tr><td>Time is</td><td><input id="T" type="number" min="0"><label for="T">s</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+    
+    <img style="margin:auto;text-align: center; display: block;" alt="LR charge time circuit schematic" src="img/lr-charge-time.webp">
+
+
+    <p class="references-title">References:</p>
+    <p class="references-link">-------------</p>
+
+   
+
+    <script>
+        $('#calculate').on('click',null,function(){
+
+            if( $('#nPercent').valAsFloat() >= 100 ) {
+                $('#nPercent').val(99.99545)
+            }
+
+            if( $('#l').val() && $('#r').val() ) {
+                $('#t').val( toExp( $('#l').valAsFloat() * $('#r').valAsFloat() ) );
+                $('#t5').val( toExp( $('#t').valAsFloat() * 5 ) )
+                $('#T').val( toExp( -1 * $('#t').valAsFloat() * Math.log( 1 - $('#nPercent').valAsFloat() / 100)  ) )
+                return
+            }
+            
+            if( $('#t').valAsFloat() && $('#l').valAsFloat() ) {
+                $('#r').val( toExp( $('#t').valAsFloat() / $('#l').valAsFloat()) )
+                $('#t5').val( toExp( $('#t').valAsFloat() * 5 ) )
+                $('#T').val( toExp( -1 * $('#t').valAsFloat() * Math.log( 1 - $('#nPercent').valAsFloat() / 100)  ) )
+                return
+            }
+
+            if( $('#t').valAsFloat() && $('#r').valAsFloat() ) {
+                $('#l').val( toExp( $('#t').valAsFloat() / $('#r').valAsFloat()) )
+                $('#t5').val( toExp( $('#t').valAsFloat() * 5 ) )
+                $('#T').val( toExp( -1 * $('#t').valAsFloat() * Math.log( 1 - $('#nPercent').valAsFloat() / 100)  ) )
+                return
+            }
+
+
+            
+        });
+    </script>
+
+</body>
+</html>

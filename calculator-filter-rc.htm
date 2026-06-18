@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Passive RC Filter Calculator</title>
+    <meta name="description" content="RC Filter Calculator (Resistor, Capacitor) - band-stop, high-pass, low-pass and band-pass frequency solve a eletronic filter to specific frequency">
+
+    <link rel="icon" type="image/png" href="img/logo-64X64.png">
+    <link rel="apple-touch-icon" href="img/logo-64X64.png">
+    
+    <meta charset="UTF-8">
+    <meta property="og:url" content="https://electro.ws">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="** ELECTRO ** - Passive RC Filter Calculator">
+    <meta property="og:description" content="RC Filter Calculator (Resistor, Capacitor) - band-stop, high-pass, low-pass and band-pass frequency solve a eletronic filter to specific frequency">
+    <meta property="og:image" content="https://electro.ws/img/logo-256X256.png">
+    <meta property="og:logo" content="https://electro.ws/img/logo-32X32.png">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS Style Sheet -->
+	<link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/fast-links.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYHZGL6FCF"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZYHZGL6FCF');
+    </script>
+
+    <!-- Google AdSense -->
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1742623736162150" crossorigin="anonymous"></script>
+
+    <!-- JQuery Franework -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- User Defined -->
+    <script src="js/utils.js"></script>
+    <script src="js/fast-links.js"></script>
+</head>
+<body>
+
+    <div id="fast-links"></div>
+    <script>fast_links2('fast-links');</script>
+
+    <h1 class="title">Passive RC Filter Calculator</h1>
+    <br>
+
+    <h2 class="brief-title">Brief for RC Filter Calculator:</h2>
+    <p class="brief-text">Compute the first order Passive RC Filter using the given formula. </p>
+    <p class="brief-text">Fill two of the three fields to compute de desired value, the frequency, the resistance or the capacitance.</p>
+    <br>
+
+    <h2 class="brief-title">Brief for RC Filter circuit:</h2>
+    <p class="brief-text">Below are the arragement for acting as high-pass or low-pass frequency. Just the arrangement indicates it's an high-pass or low-pass.</p>
+    <br>
+
+    <img class="formula-math" alt="RC filter formula" src="https://latex.codecogs.com/svg.image?f_%7Bc%7D%3D%5Cfrac%7B1%7D%7B2%20%5Cpi%20C%20R%7D">
+    <table class="formula-terms">
+        <tr><td>fc</td><td>Cut-off Frequency in hertz</td></tr>
+        <tr><td>C</td><td>Capacitance in farad</td></tr>
+        <tr><td>R</td><td>Resistance in ohm</td></tr>
+    </table>
+    <br>
+    
+    <table class="formula-calculator">
+        <tr><td>fc</td><td><input id="frequency" type="number" min="0" value="100e+6"><label for="frequency">Hz</label></td></tr>
+        <tr><td>R</td><td><input id="resistance" type="number" min="0" value="1e+3"><label for="resistance">&Omega;</label></td></tr>
+        <tr><td>C</td><td><input id="capacitance" type="number" min="0" value=""><label for="capacitance">F</label></td></tr>
+        <tr><td>f +3dB</td><td><input id="freq_high" type="number" disabled><label for="freq_high">Hz</label></td></tr>
+        <tr><td>f -3dB</td><td><input id="freq_low" type="number" disabled><label for="freq_low">Hz</label></td></tr>
+        <tr><td colspan="2"><input id="calculate" type="submit" value="calculate"></td></tr>
+    </table>
+    
+    <table class="cientific-notation">
+        <tr><td colspan="5">---| Cientific Notation |---</td></tr>
+        <tr><td>femto</td><td>pico</td><td>nano</td><td>micro</td><td>mili</td></tr>
+        <tr><td>e-15</td><td>e-12</td><td>e-9</td><td>e-6</td><td>e-3</td></tr>
+        <tr><td>Kilo</td><td>Mega</td><td>Giga</td><td>Tera</td><td>Peta</td></tr>
+        <tr><td>e+3</td><td>e+6</td><td>e+9</td><td>e+12</td><td>e+15</td></tr>
+    </table>
+    <br>
+    
+    <img style="margin:auto;text-align: center; display: block;" alt="RC filter schematic" src="img/filter-rc.webp">
+
+    <p class="references-title">References:</p>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/Low-pass_filter" target="_blank">Wikipedia Low-pass filter</a>
+    <a class="references-link" href="https://en.wikipedia.org/wiki/High-pass_filter" target="_blank">Wikipedia High-pass filter</a>
+    
+   
+    
+    <script src="js/electro-math.js"></script>
+    <script>
+        x = new ElectroMath()
+        $('#calculate').on('click',null,function(){
+            x.filterRC.clear();
+            if( $('#capacitance').valAsFloat() && $('#resistance').valAsFloat() ) {                
+                x.filterRC.R($('#resistance').valAsFloat())
+                x.filterRC.C($('#capacitance').valAsFloat())
+                x.filterRC.compute()
+                $('#frequency').val(toExp(x.filterRC.fc()))
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(3)
+                x.decibelAmplitude.compute();
+                $('#freq_high').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(-3)
+                x.decibelAmplitude.compute()
+                $('#freq_low').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                return
+            }       
+            if( $('#frequency').valAsFloat() && $('#resistance').valAsFloat() ) {
+                x.filterRC.fc($('#frequency').valAsFloat())
+                x.filterRC.R($('#resistance').valAsFloat())
+                x.filterRC.compute()
+                $('#capacitance').val(toExp(x.filterRC.C()))
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(3)
+                x.decibelAmplitude.compute();
+                $('#freq_high').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(-3)
+                x.decibelAmplitude.compute()
+                $('#freq_low').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                return
+            }       
+            if( $('#frequency').valAsFloat() && $('#capacitance').valAsFloat() ) {
+                x.filterRC.fc($('#frequency').valAsFloat())
+                x.filterRC.C($('#capacitance').valAsFloat())
+                x.filterRC.compute()
+                $('#resistance').val(toExp(x.filterRC.R()))
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(3)
+                x.decibelAmplitude.compute()
+                $('#freq_high').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                x.decibelAmplitude.clear()
+                x.decibelAmplitude.Ref(1)
+                x.decibelAmplitude.dB(-3)
+                x.decibelAmplitude.compute()
+                $('#freq_low').val( toExp($('#frequency').valAsFloat()* x.decibelAmplitude.Refer()) )
+                return
+            }
+        });
+    </script>
+
+</body>
+</html>

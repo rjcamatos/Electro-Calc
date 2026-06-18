@@ -1,0 +1,199 @@
+body {
+  background-color: rgb(248, 203, 107);
+  border: 0px solid black;
+  margin: 0px auto 0px auto;
+  text-align: center;
+}
+
+h1.title {
+  font-weight: bold;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: solid 1px white;
+  background-color: black;
+  margin: 20px auto 0px auto;
+  width: 90%;
+}
+
+/* unvisited link */
+a:link {
+  color: rgb(0, 0, 0);
+}
+
+/* visited link */
+a:visited {
+  color: rgb(11, 121, 11);
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(0, 0, 0);
+}
+
+/* selected link */
+a:active {
+  color: rgb(0, 0, 0);
+}
+
+.info {
+  font-style: italic;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.info:hover {
+  cursor: pointer;
+  color: blueviolet;
+}
+
+h2.index-title {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  width: 80%;
+  border: solid 1px white;
+  margin: 10px auto 10px auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+} 
+
+p.index-description {
+  display: block;
+  background-color: inherit;
+  color: black;
+  width: fit-content;
+  margin: 0px auto 0px auto;
+}
+
+a.goto-index {
+  display: block;
+  background-color: black;
+  color: white;
+  width: fit-content;
+  padding: 5px;
+  margin: 20px auto 50px auto;  
+}
+
+a.index-link {
+  display: block;
+  background-color: inherit;
+  color: black;
+  width: fit-content;
+  margin: 5px auto 20px auto;
+}
+
+h2.brief-title {
+  text-align: left;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  width: 80%;
+  border: solid 1px white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  margin: 10px auto 0px auto;
+} 
+
+p.brief-text {
+  text-align: justify;
+  font-weight: normal;
+  color: black;
+  width: 75%;
+  margin: 5px auto 0px auto;
+  position: relative;
+  left: 10px;
+  
+}
+
+p.text {
+  text-align: left;
+  font-weight: normal;
+  color: black;
+  width: 80%;
+  margin: 5px auto 0px auto;
+  position: relative;
+  left: 10px;
+}
+
+img.formula-math {
+  border: 0px solid white;
+  margin: 0px auto 0px auto;
+  display: block;
+}
+
+table.formula-terms {
+  border: 0px solid white;
+  margin: 5px auto 0px auto;
+}
+
+table.formula-terms td:nth-child(1) {
+  font-weight: bold;
+  text-align: right;
+}
+
+table.formula-terms td:nth-child(2) {
+  font-weight: normal;
+  text-align: left;
+}
+
+table.formula-calculator {
+  border: 0px solid white;
+  margin: 5px auto 0px auto;
+}
+
+table.formula-calculator input[type=number] {
+  height: 30px;
+  width: 150px;
+}
+
+table.formula-calculator td:nth-child(1) {
+  text-align: right;
+}
+
+table.formula-calculator td:nth-child(2) {
+  text-align: left;
+}
+
+table.formula-calculator td:nth-child(3) {
+  text-align: left;
+}
+
+table.formula-calculator tr:last-child td:last-child {
+  border: 0px solid white;
+  text-align: center;
+}
+
+table.cientific-notation {
+  border: 0px solid white;
+  margin: 5px auto 0px auto;
+}
+
+table.cientific-notation tr:nth-child(1) > td {
+  font-weight: bold;
+}
+table.cientific-notation tr:nth-child(2) > td,
+table.cientific-notation tr:nth-child(4) > td {
+  font-weight: bold;
+}
+
+ol {
+  width:75%;
+  margin: 0px auto 0px auto;
+}
+
+ol >li {
+  display: inline;
+}
+
+p.references-title {
+  margin: 10px auto 0px auto;
+  font-weight: bold;
+}
+
+a.references-link {
+  display: block;
+  margin: 10px auto 0px auto;
+}
